@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" width="900" height="620">
+  <style>
+    text { font-family: 'Courier New', monospace; font-size: 13px; fill: #e0e0e0; }
+    .title { font-size: 18px; font-weight: bold; fill: #ffffff; }
+    .subtitle { font-size: 14px; fill: #aaaaaa; }
+    .label { font-size: 12px; fill: #999999; }
+    .warn { fill: #ff6b6b; font-weight: bold; }
+    .pipe { stroke: #4fc3f7; stroke-width: 3; fill: none; }
+    .pipe-return { stroke: #81c784; stroke-width: 3; fill: none; }
+    .pipe-drain { stroke: #ffb74d; stroke-width: 2; fill: none; stroke-dasharray: 6,3; }
+    .component { stroke: #ffffff; stroke-width: 2; fill: #1a1a2e; }
+    .valve-open { stroke: #81c784; stroke-width: 2; fill: none; }
+    .valve-closed { stroke: #ff6b6b; stroke-width: 2; fill: none; }
+    .motor { stroke: #ce93d8; stroke-width: 2; fill: #1a1a2e; }
+    .tank { stroke: #4fc3f7; stroke-width: 2; fill: #0d1b2a; }
+    .arrow { fill: #4fc3f7; }
+    .arrow-green { fill: #81c784; }
+    .arrow-orange { fill: #ffb74d; }
+    .box { stroke: #555555; stroke-width: 1; fill: none; stroke-dasharray: 4,4; }
+    .legend-line { stroke: #555555; stroke-width: 1; }
+  </style>
+
+  <!-- Background -->
+  <rect width="900" height="620" fill="#121212"/>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" class="title">双泵双回路液压系统原理图 — V2.0</text>
+  <text x="450" y="52" text-anchor="middle" class="subtitle">左右电机后端各驱动一台 CBN-E300 齿轮泵 | DSG-02-2B2 卸荷阀实现行走/液压互斥</text>
+
+  <!-- ====== LEFT CIRCUIT (左侧回路) ====== -->
+  <rect x="40" y="80" width="400" height="370" class="box"/>
+  <text x="240" y="105" text-anchor="middle" class="label">【左回路 — 电机后端驱动】</text>
+
+  <!-- Left Motor -->
+  <circle cx="100" cy="180" r="35" class="motor"/>
+  <text x="100" y="176" text-anchor="middle" style="font-size:11px; fill:#ce93d8;">80TM</text>
+  <text x="100" y="192" text-anchor="middle" style="font-size:10px; fill:#ce93d8;">伺服电机</text>
+  <text x="100" y="230" text-anchor="middle" class="label">左电机 (双出轴)</text>
+
+  <!-- Left Motor → Pump shaft -->
+  <line x1="140" y1="180" x2="200" y2="180" stroke="#ce93d8" stroke-width="2"/>
+  <text x="165" y="175" text-anchor="middle" style="font-size:9px; fill:#ce93d8;">联轴器</text>
+
+  <!-- Left Pump -->
+  <rect x="200" y="155" width="50" height="50" rx="5" class="component"/>
+  <text x="225" y="178" text-anchor="middle" style="font-size:10px; fill:#4fc3f7;">CBN</text>
+  <text x="225" y="192" text-anchor="middle" style="font-size:10px; fill:#4fc3f7;">E300</text>
+  <text x="225" y="225" text-anchor="middle" class="label">齿轮泵 L</text>
+
+  <!-- Pump suction line to tank (蓝色回油) -->
+  <line x1="225" y1="205" x2="225" y2="340" class="pipe-return"/>
+  <polygon points="220,330 230,330 225,340" class="arrow-green"/>
+
+  <!-- Pump discharge (高压出油) -->
+  <line x1="250" y1="180" x2="340" y2="180" class="pipe"/>
+  <polygon points="332,176 332,184 342,180" class="arrow"/>
+
+  <!-- Unloading Valve (卸荷阀) -->
+  <rect x="340" y="155" width="50" height="50" rx="3" class="valve-open"/>
+  <text x="365" y="178" text-anchor="middle" style="font-size:9px; fill:#81c784;">DSG</text>
+  <text x="365" y="192" text-anchor="middle" style="font-size:9px; fill:#81c784;">02-2B2</text>
+  <text x="365" y="225" text-anchor="middle" class="label">卸荷阀 L</text>
+
+  <!-- Solenoid coil indicator -->
+  <rect x="385" y="165" width="20" height="30" rx="2" stroke="#ffb74d" stroke-width="1.5" fill="none"/>
+  <text x="395" y="184" text-anchor="middle" style="font-size:8px; fill:#ffb74d;">24V</text>
+
+  <!-- Pressure line to terminal (工作口) -->
+  <line x1="340" y1="180" x2="340" y2="280" class="pipe"/>
+  <polygon points="336,272 344,272 340,280" class="arrow"/>
+
+  <!-- Terminal outlet L -->
+  <rect x="310" y="280" width="60" height="30" rx="3" stroke="#4fc3f7" stroke-width="1.5" fill="#0d1b2a"/>
+  <text x="340" y="299" text-anchor="middle" style="font-size:10px; fill:#4fc3f7;">工作口 L</text>
+
+  <!-- Quick connector -->
+  <circle cx="340" cy="320" r="8" stroke="#4fc3f7" stroke-width="1.5" fill="none"/>
+  <text x="340" y="340" text-anchor="middle" class="label">快插接头</text>
+
+  <!-- Drain line from valve to tank -->
+  <line x1="390" y1="180" x2="430" y2="180" class="pipe-drain"/>
+  <line x1="430" y1="180" x2="430" y2="340" class="pipe-drain"/>
+  <polygon points="426,330 434,330 430,340" class="arrow-orange"/>
+  <text x="445" y="260" class="label" style="fill:#ffb74d;">卸荷回油</text>
+
+  <!-- ====== RIGHT CIRCUIT (右侧回路) ====== -->
+  <rect x="460" y="80" width="400" height="370" class="box"/>
+  <text x="660" y="105" text-anchor="middle" class="label">【右回路 — 电机后端驱动】</text>
+
+  <!-- Right Motor -->
+  <circle cx="520" cy="180" r="35" class="motor"/>
+  <text x="520" y="176" text-anchor="middle" style="font-size:11px; fill:#ce93d8;">80TM</text>
+  <text x="520" y="192" text-anchor="middle" style="font-size:10px; fill:#ce93d8;">伺服电机</text>
+  <text x="520" y="230" text-anchor="middle" class="label">右电机 (双出轴)</text>
+
+  <!-- Right Motor → Pump shaft -->
+  <line x1="560" y1="180" x2="620" y2="180" stroke="#ce93d8" stroke-width="2"/>
+  <text x="585" y="175" text-anchor="middle" style="font-size:9px; fill:#ce93d8;">联轴器</text>
+
+  <!-- Right Pump -->
+  <rect x="620" y="155" width="50" height="50" rx="5" class="component"/>
+  <text x="645" y="178" text-anchor="middle" style="font-size:10px; fill:#4fc3f7;">CBN</text>
+  <text x="645" y="192" text-anchor="middle" style="font-size:10px; fill:#4fc3f7;">E300</text>
+  <text x="645" y="225" text-anchor="middle" class="label">齿轮泵 R</text>
+
+  <!-- Pump suction line to tank -->
+  <line x1="645" y1="205" x2="645" y2="340" class="pipe-return"/>
+  <polygon points="640,330 650,330 645,340" class="arrow-green"/>
+
+  <!-- Pump discharge -->
+  <line x1="670" y1="180" x2="760" y2="180" class="pipe"/>
+  <polygon points="752,176 752,184 762,180" class="arrow"/>
+
+  <!-- Unloading Valve R -->
+  <rect x="760" y="155" width="50" height="50" rx="3" class="valve-open"/>
+  <text x="785" y="178" text-anchor="middle" style="font-size:9px; fill:#81c784;">DSG</text>
+  <text x="785" y="192" text-anchor="middle" style="font-size:9px; fill:#81c784;">02-2B2</text>
+  <text x="785" y="225" text-anchor="middle" class="label">卸荷阀 R</text>
+
+  <!-- Solenoid coil -->
+  <rect x="805" y="165" width="20" height="30" rx="2" stroke="#ffb74d" stroke-width="1.5" fill="none"/>
+  <text x="815" y="184" text-anchor="middle" style="font-size:8px; fill:#ffb74d;">24V</text>
+
+  <!-- Pressure line to terminal R -->
+  <line x1="760" y1="180" x2="760" y2="280" class="pipe"/>
+  <polygon points="756,272 764,272 760,280" class="arrow"/>
+
+  <!-- Terminal outlet R -->
+  <rect x="730" y="280" width="60" height="30" rx="3" stroke="#4fc3f7" stroke-width="1.5" fill="#0d1b2a"/>
+  <text x="760" y="299" text-anchor="middle" style="font-size:10px; fill:#4fc3f7;">工作口 R</text>
+
+  <!-- Quick connector R -->
+  <circle cx="760" cy="320" r="8" stroke="#4fc3f7" stroke-width="1.5" fill="none"/>
+  <text x="760" y="340" text-anchor="middle" class="label">快插接头</text>
+
+  <!-- Drain line R -->
+  <line x1="810" y1="180" x2="850" y2="180" class="pipe-drain"/>
+  <line x1="850" y1="180" x2="850" y2="340" class="pipe-drain"/>
+  <polygon points="846,330 854,330 850,340" class="arrow-orange"/>
+  <text x="790" y="260" text-anchor="middle" class="label" style="fill:#ffb74d;">卸荷回油</text>
+
+  <!-- ====== TANK (共用油箱) ====== -->
+  <rect x="300" y="350" width="300" height="60" rx="8" class="tank"/>
+  <text x="450" y="378" text-anchor="middle" style="font-size:14px; fill:#4fc3f7;">共用油箱 — 4L 铝合金散热翅片</text>
+  <text x="450" y="396" text-anchor="middle" class="label">安装位置: 车底最低位 | 介质: 46#抗磨液压油</text>
+
+  <!-- Suction arrows into tank area -->
+  <line x1="225" y1="340" x2="370" y2="380" class="pipe-return"/>
+  <line x1="645" y1="340" x2="530" y2="380" class="pipe-return"/>
+
+  <!-- Drain arrows into tank -->
+  <line x1="430" y1="340" x2="400" y2="380" class="pipe-drain"/>
+  <line x1="850" y1="340" x2="500" y2="380" class="pipe-drain"/>
+
+  <!-- ====== RELIEF VALVES (溢流阀) ====== -->
+  <rect x="160" y="270" width="40" height="30" rx="3" stroke="#ff9800" stroke-width="1.5" fill="#1a1a2e"/>
+  <text x="180" y="290" text-anchor="middle" style="font-size:9px; fill:#ff9800;">溢流阀</text>
+  <line x1="200" y1="285" x2="250" y2="285" stroke="#ff9800" stroke-width="1.5"/>
+  <line x1="250" y1="285" x2="250" y2="340" class="pipe-return"/>
+
+  <rect x="580" y="270" width="40" height="30" rx="3" stroke="#ff9800" stroke-width="1.5" fill="#1a1a2e"/>
+  <text x="600" y="290" text-anchor="middle" style="font-size:9px; fill:#ff9800;">溢流阀</text>
+  <line x1="620" y1="285" x2="670" y2="285" stroke="#ff9800" stroke-width="1.5"/>
+  <line x1="670" y1="285" x2="670" y2="340" class="pipe-return"/>
+
+  <!-- ====== MODE TABLE (互锁逻辑表) ====== -->
+  <rect x="80" y="430" width="740" height="110" rx="5" stroke="#555555" stroke-width="1" fill="#1a1a2e"/>
+  <text x="450" y="455" text-anchor="middle" style="font-size:14px; fill:#ffffff; font-weight:bold;">行走/液压互锁逻辑 — DSG-02-2B2 卸荷阀控制</text>
+
+  <rect x="100" y="465" width="170" height="25" rx="2" stroke="#81c784" stroke-width="1.5" fill="#1b3a2a"/>
+  <text x="185" y="483" text-anchor="middle" style="font-size:11px; fill:#81c784;">● 行走/爬楼模式</text>
+
+  <rect x="360" y="465" width="170" height="25" rx="2" stroke="#ff6b6b" stroke-width="1.5" fill="#3a1b1b"/>
+  <text x="445" y="483" text-anchor="middle" style="font-size:11px; fill:#ff6b6b;">● 液压作业模式</text>
+
+  <text x="100" y="510" style="font-size:11px; fill:#999;">卸荷阀: </text>
+  <text x="160" y="510" style="font-size:11px; fill:#81c784;">得电 → 导通 (卸荷)</text>
+  <text x="360" y="510" style="font-size:11px; fill:#999;">卸荷阀: </text>
+  <text x="420" y="510" style="font-size:11px; fill:#ff6b6b;">断电 → 关闭 (建压)</text>
+
+  <text x="100" y="530" style="font-size:11px; fill:#999;">泵端负载: </text>
+  <text x="175" y="530" style="font-size:11px; fill:#81c784;">≈0.05~0.1 N·m (空转)</text>
+  <text x="360" y="530" style="font-size:11px; fill:#999;">泵端负载: </text>
+  <text x="420" y="530" style="font-size:11px; fill:#ff6b6b;">输出压力能</text>
+
+  <text x="100" y="550" style="font-size:11px; fill:#999;">行走抱闸: </text>
+  <text x="175" y="550" style="font-size:11px; fill:#81c784;">松开 → 可行驶</text>
+  <text x="360" y="550" style="font-size:11px; fill:#999;">行走抱闸: </text>
+  <text x="420" y="550" style="font-size:11px; fill:#ff6b6b;">锁死 → 中轮固定</text>
+
+  <!-- ====== LEGEND (图例) ====== -->
+  <rect x="80" y="555" width="740" height="55" rx="5" stroke="#333333" stroke-width="1" fill="#1a1a2e"/>
+  <text x="100" y="575" style="font-size:10px; fill:#666;">图例:</text>
+  <line x1="140" y1="572" x2="170" y2="572" stroke="#4fc3f7" stroke-width="3"/>
+  <text x="175" y="576" style="font-size:10px; fill:#999;">高压油管</text>
+
+  <line x1="250" y1="572" x2="280" y2="572" stroke="#81c784" stroke-width="3"/>
+  <text x="285" y="576" style="font-size:10px; fill:#999;">吸油/回油管</text>
+
+  <line x1="380" y1="572" x2="410" y2="572" stroke="#ffb74d" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="415" y="576" style="font-size:10px; fill:#999;">卸荷回油(虚线)</text>
+
+  <line x1="520" y1="572" x2="550" y2="572" stroke="#ce93d8" stroke-width="2"/>
+  <text x="555" y="576" style="font-size:10px; fill:#999;">机械传动轴</text>
+
+  <rect x="640" y="565" width="15" height="15" rx="2" stroke="#ff9800" stroke-width="1.5" fill="#1a1a2e"/>
+  <text x="660" y="578" style="font-size:10px; fill:#999;">溢流阀(安全)</text>
+
+  <!-- WARNING -->
+  <text x="450" y="610" text-anchor="middle" class="warn">⚠ 行走/液压模式互斥 — 严禁同时启用！</text>
+
+</svg>
